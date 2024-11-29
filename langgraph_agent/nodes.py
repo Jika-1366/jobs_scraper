@@ -53,14 +53,12 @@ def write_suggestion_node(state: AgentState):
                     報酬に関係なく、柔軟に対応し、高品質な仕事を提供する姿勢を明確にしてください。
                     
                     ユーザー名: {state["user_name"]}\n
-                    ユーザーの強みと情報: {state["user_introduction"]}\n
+                    ユーザーの強みと情報、提案のお手本: {state["user_introduction"]}\n
                     これらの情報に基づいて、ユーザーが仕事の応募をする際の提案文を作成してください。
-                    納期や報酬も提案しましょう。人気になりそうな案件は応募する仕事内容(募集者の提案する報酬)よりも低い報酬と早い納期を提案しましょう。
                     出力形式を次のようにしてください：
 
                     タイトルや見出しには###などのマークダウン記法を使用せず、普通の文章として書いてください。
-                    改行には\nなどのエスケープシーケンスを使用せず、普通に改行してください。
-                    可能な限りシンプルで、読みやすい形式にしてください。
+                    改行には\nなどのエスケープシーケンスを使用しないでください。
                     """)
     job_description_message = HumanMessage(content=f"応募する仕事内容: {state['jobs_description']}")
     messages = [system_message, job_description_message]
