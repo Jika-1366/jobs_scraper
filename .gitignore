@@ -10,6 +10,9 @@ __pycache__/
 # Log files
 *.log
 data/*.log
+data/*.yaml
+data/*.json
+
 
 # Token and credential files
 token.json
