@@ -20,6 +20,7 @@ class Router(TypedDict):
 #raw_model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0, google_api_key=os.getenv('GEMINI_API_KEY'))
 raw_model = get_normal_llm("gpt-4o-mini")
 router_model = raw_model.with_structured_output(Router)
+raw_good_model=get_normal_llm("claude-3-5-sonnet-latest")
 
 def router_node(state: AgentState):
     system_message = SystemMessage(content=f"""
@@ -62,7 +63,7 @@ def write_suggestion_node(state: AgentState):
                     """)
     job_description_message = HumanMessage(content=f"応募する仕事内容: {state['jobs_description']}")
     messages = [system_message, job_description_message]
-    suggestion_sentence = raw_model.invoke(messages).content
+    suggestion_sentence = raw_good_model.invoke(messages).content
     return {"suggestion_sentence": suggestion_sentence}
     
 
